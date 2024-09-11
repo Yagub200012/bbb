@@ -5,6 +5,13 @@ body {
     color: rgb(255, 255, 255);
 }
 
+.page-with-background {
+    background-image: url('../images/404.PNG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 header {
     backdrop-filter: blur(7px);
     background-color: rgba(4, 97, 89, 0.589);

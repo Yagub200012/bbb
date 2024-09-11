@@ -7,7 +7,7 @@
         <div class="sector-block{{sector.id}}">
             <h3>{{sector.title}}</h3>
             {%for subsector in sector.subsectors%}
-            <a href="/subsector/{{subsector.id}}" class="buttonn"><p>{{subsector.title}}</p></a>
+            <a href="/subsector_post/?subsector_id={{subsector.id}}&sector_id={{sector.id}}&sector_title={{sector.title}}" class="buttonn"><p>{{subsector.title}}</p></a>
 <!--                <p>{{subsector.title}}</p>-->
             {%endfor%}
         </div>

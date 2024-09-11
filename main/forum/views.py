@@ -27,32 +27,31 @@ def main_page(request):
 
 
 @require_http_methods(["GET"])
-def subsector(request, pk):
-    # Получаем объект SubSector с указанным ID, делаем select_related и prefetch_related для оптимизации запросов
-    subsector_posts = (SubSector.objects
-                       .select_related('sector')  # Подгружаем связанную модель Sector одним запросом
-                       .prefetch_related('posts')  # Подгружаем связанные Post для SubSector
-                       .filter(id=pk)  # Фильтруем по id
-                       .first())  # Берём первый объект (в данном случае, единственный)
-
-    # Проверяем, что subsector_posts не None (в случае если объект не найден)
-    if not subsector_posts:
-        return get_object_or_404(SubSector, id=pk)  # Возвращаем 404, если SubSector не найден
-
-    # Формируем словарь с данными для передачи в шаблон
+def subsector_post(request):
+    subsector_id = request.GET.get('subsector_id', None)
+    sector_id = request.GET.get('sector_id', None)
+    sector_title = request.GET.get('sector_title', None)
+    if (not subsector_id) or (not sector_id) or (not sector_title):
+        return render(request, '404page.html')
+    posts = (Post.objects
+             .filter(subsector=subsector_id)
+             .order_by('-created_at')
+             .prefetch_related('subsector')
+             )
+    first_post = posts.first()
+    if not first_post:
+        return render(request, '404page.html')
     subsector = {
-        'id': pk,
-        'title': subsector_posts.title,
-        'description': subsector_posts.description,  # Исправлено 'describtion' на 'description'
+        'id': subsector_id,
+        'title': first_post.subsector.title,
+        'description': first_post.subsector.description,
         'sector': {
-            'id': subsector_posts.sector.id,
-            'title': subsector_posts.sector.title
+            'id': sector_id,
+            'title': sector_title
         },
         'posts': []
     }
-
-    # Используем prefetch_related для оптимизации запросов
-    for post in subsector_posts.posts.all():
+    for post in posts:
         subsector['posts'].append({
             'id': post.id,
             'title': post.title,
@@ -61,9 +60,7 @@ def subsector(request, pk):
             'likes': post.likes,
             'dislikes': post.dislikes,
             'language': post.language,
-            'user': post.user.username,  # Если нужно имя пользователя, иначе можно просто пост.user
+            'user': post.user.username,
         })
 
-    # Печатаем для отладки (по необходимости)
-    print(subsector)
     return render(request, 'subsector.html', {'subsector': subsector})

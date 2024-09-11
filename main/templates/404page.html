@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+
+            {% endblock title %}
+        </title>
+        <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="/images/headlogo.PNG">
+    </head>
+    <body class="page-with-background">
+        <header>
+            <div class="logo">
+                <!-- Здесь может быть ваш логотип -->
+                <a href='/main'>
+                    <img src="{% static 'images/logo.PNG' %}" alt="Логотип">
+                </a>
+            </div>
+            <!-- <h1>Название приложения</h1> -->
+            <nav>
+                <a href="#">Главная</a>
+                <a href="#">О нас</a>
+                <a href="#">Контакты</a>
+            </nav>
+        </header>
+    </body>
+</html>
