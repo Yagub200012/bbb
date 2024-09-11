@@ -1,6 +1,6 @@
 from django.template.defaulttags import comment
 from rest_framework import serializers
-from .models import Post, Like, Comment, SubSector, Sector
+from ..models import Post, Like, Comment, SubSector, Sector
 from authorization.models import User
 
 

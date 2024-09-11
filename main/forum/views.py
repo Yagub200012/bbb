@@ -1,47 +1,7 @@
-from pydoc import describe
-
 from django.shortcuts import render
 from rest_framework.generics import get_object_or_404
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
 from .models import *
-from .serializers import SectorSerializer, SubSectorPostSerializer, PostSerializer
-from rest_framework import generics, status
-from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
 from django.views.decorators.http import require_http_methods
-
-
-class SectorListView(generics.ListAPIView):
-    queryset = Sector.objects.all()
-    serializer_class = SectorSerializer
-    permission_classes = [IsAdminOrReadOnly]
-
-
-class SubSectorListview(generics.RetrieveAPIView):
-    queryset = SubSector.objects.all()
-    serializer_class = SubSectorPostSerializer
-    permission_classes = [IsAdminOrReadOnly]
-
-
-class PostListView(generics.ListAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [IsOwnerOrReadOnly]
-
-
-class PostView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [IsOwnerOrReadOnly]
-
-
-class PostCreateView(generics.CreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated]
-
-    # TEMPLATES  RENDERING
 
 
 @require_http_methods(["GET"])
@@ -107,4 +67,3 @@ def subsector(request, pk):
     # Печатаем для отладки (по необходимости)
     print(subsector)
     return render(request, 'subsector.html', {'subsector': subsector})
-
