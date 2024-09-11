@@ -1,0 +1,537 @@
+body {
+    font-family: Arial, sans-serif; /* Используем шрифт Arial, если его нет, то любой sans-serif шрифт */
+    background-color: #1d1d1d;
+    background-attachment: fixed;
+    color: rgb(255, 255, 255);
+}
+
+header {
+    backdrop-filter: blur(7px);
+    background-color: rgba(4, 97, 89, 0.589);
+    /* background-color: rgba(1, 42, 51, 0); */
+    color: #fff;
+    padding: 3px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin: 0 auto; /* Центрируем хедер по горизонтали */
+    width: 90%; /* Фиксированная ширина хедера */
+    max-width: 997px; /* Максимальная ширина хедера */
+    position: fixed; /* Фиксируем позицию */
+    left: 50%; /* Помещаем хедер на середину по горизонтали */
+    transform: translateX(-50%); /* Смещаем хедер на половину его собственной ширины влево */
+    z-index: 1000;
+}
+
+/* Контейнер для блоков под хедером */
+.sector-container {
+    display: flex; /* Использование flexbox для выравнивания блоков */
+    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
+    max-width: 110%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    justify-content: space-between;
+}
+
+/* Стили для каждого блокsa */
+.sector-block1 {
+    background-image: url('../images/amine.jpg');
+    background-size: cover;
+    /* background-color: rgb(51, 51, 51); */
+    color: #fdaea0; /* Белый цвет текста для контраста с фоном */
+    /* border: 1px solid rgb(255, 0, 0); Ширина 2px, стиль solid, цвет белый */
+    padding: 4px; /* Внутренние отступы для пространства внутри блока */
+    border-radius: 10px; /* Закругленные углы блока */
+    text-align: center; /* Выравнивание текста по центру блока */
+    flex: 1; /* Блоки будут занимать равную ширину в контейнере */
+    margin: 0 1px; /* Горизонтальные отступы между блоками */
+    /* box-shadow: inset 0px 0px 15px rgba(255, 0, 0, 0.479); */
+    
+    box-sizing: border-box; /* Учитывает отступы и границы в расчете ширины и высоты элемента */
+}
+
+.sector-block2 {
+    background-image: url('../images/games.PNG');
+    background-size: cover;
+    /* background-color: rgb(51, 51, 51); */
+    color: #a9bdff; /* Белый цвет текста для контраста с фоном */
+    /* border: 1px solid #00ffea; Ширина 2px, стиль solid, цвет белый */
+    padding: 4px; /* Внутренние отступы для пространства внутри блока */
+    border-radius: 10px; /* Закругленные углы блока */
+    text-align: center; /* Выравнивание текста по центру блока */
+    flex: 1; /* Блоки будут занимать равную ширину в контейнере */
+    margin: 0 1px; /* Горизонтальные отступы между блоками */
+    /* box-shadow: inset 0px 0px 15px rgba(0, 255, 213, 0.479);/ */
+    box-sizing: border-box; /* Учитывает отступы и границы в расчете ширины и высоты элемента */
+}
+.sector-block3 {
+    background-image: url('../images/interests.PNG');
+    background-size: cover;
+    color: #f8ff9b; /* Белый цвет текста для контраста с фоном */
+    /* borer: 1px solid #001aff; Ширина 2px, стиль solid, цвет белый */
+    padding: 4px; /* Внутренние отступы для пространства внутри блока */
+    border-radius: 10px; /* Закругленные углы блока */
+    text-align: center; /* Выравнивание текста по центру блока */
+    flex: 1; /* Блоки будут занимать равную ширину в контейнере */
+    margin: 0 1px; /* Горизонтальные отступы между блоками */
+    /* box-shadow: inset 0px 0px 15px rgba(0, 4, 255, 0.479); */
+    box-sizing: border-box; /* Учитывает отступы и границы в расчете ширины и высоты элемента */
+}
+.sector-block4 {
+    background-image: url('../images/politic.PNG');
+    background-size: cover;
+    color: #f8a8ff; /* Белый цвет текста для контраста с фоном */
+    /* border: 1px solid #ff00ea; Ширина 2px, стиль solid, цвет белый */
+    padding: 4px; /* Внутренние отступы для пространства внутри блока */
+    border-radius: 10px; /* Закругленные углы блока */
+    text-align: center; /* Выравнивание текста по центру блока */
+    flex: 1; /* Блоки будут занимать равную ширину в контейнере */
+    margin: 0 1px; /* Горизонтальные отступы между блоками */
+    /* box-shadow: inset 0px 0px 15px rgba(212, 0, 255, 0.479); */
+    box-sizing: border-box; /* Учитывает отступы и границы в расчете ширины и высоты элемента */
+}
+.sector-block5 {
+    background-image: url('../images/technology.PNG');
+    background-size: cover;
+    color: #bdffac; /* Белый цвет текста для контраста с фоном */
+    /* border: 1px solid #0026ff; Ширина 2px, стиль solid, цвет белый */
+    padding: 4px; /* Внутренние отступы для пространства внутри блока */
+    border-radius: 10px; /* Закругленные углы блока */
+    text-align: center; /* Выравнивание текста по центру блока */
+    flex: 1; /* Блоки будут занимать равную ширину в контейнере */
+    margin: 0 1px; /* Горизонтальные отступы между блоками */
+    /* box-shadow: inset 0px 0px 15px rgba(179, 255, 0, 0.479); */
+    box-sizing: border-box; /* Учитывает отступы и границы в расчете ширины и высоты элемента */
+}
+.sector-block6 {
+    background-image: url('../images/random.PNG');
+    background-size: cover;
+    color: #ffffff; /* Белый цвет текста для контраста с фоном */
+    /* border: 1px solid #0026ff; Ширина 2px, стиль solid, цвет белый */
+    padding: 4px; /* Внутренние отступы для пространства внутри блока */
+    border-radius: 10px; /* Закругленные углы блока */
+    text-align: center; /* Выравнивание текста по центру блока */
+    flex: 1; /* Блоки будут занимать равную ширину в контейнере */
+    margin: 0 1px; /* Горизонтальные отступы между блоками */
+    /* box-shadow: inset 0px 0px 15px rgba(179, 255, 0, 0.479); */
+    box-sizing: border-box; /* Учитывает отступы и границы в расчете ширины и высоты элемента */
+}
+
+.buttonn {
+    display: block;
+    color: #ffffff; /* Цвет текста */
+    border: white;
+    border-radius: 10px;
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+    box-sizing: border-box;
+    flex: 1; /* Адаптивная ширина */
+    text-align: center;
+}
+
+.buttonn:hover {
+    background-color: white;
+    color: black;
+}
+
+
+
+
+
+
+/* форма */
+form {
+    background: linear-gradient(to top, #597e83, #e4eef0);
+    color: #000000;
+    padding: 20px; /* Увеличиваем отступы для более опрятного внешнего вида */
+    border-radius: 10px;
+}
+
+.standart_form {
+    margin: 0 auto; /* Центрируем форму по горизонтали */
+    text-align: center;
+    max-width: 550px;
+}
+
+.signupout {
+    margin: 0 auto; /* Центрируем форму по горизонтали */
+    text-align: center;
+    max-width: 300px;
+}
+
+/* form button {
+    background-color: #312a01; /* Цвет фона кнопки */
+    /* color: #fff; /* Цвет текста кнопки */
+    /* border: none; Убираем границу кнопки */
+    /* padding: 10px 20px; Отступы кнопки */
+    /* border-radius: 20px; Скругляем углы кнопки */
+    /* cursor: pointer; Задаем указатель при наведении на кнопку */
+    /* width: 50%; Ширина поля ввода */
+/* }  */
+
+form button{
+
+    width: 200px;
+    height: 35px;
+    border: none;
+    background-color: transparent;
+    border-radius: 50px;
+    font-size: 20px;
+    color: #fdfcfc;
+    cursor: pointer;
+    box-shadow: -5px -5px 10px rgba(164, 201, 198, 0.404),
+        5px 5px 10px rgba(1, 7, 8, 0.178);
+    transition: box-shadow 0.4s ease;
+}
+
+form select{
+    width: 90%; /* Ширина поля ввода */
+    padding: 10px; /* Отступы поля ввода */
+    margin-bottom: 1px; /* Отступ между полями */
+    border: none;
+    border-radius: 20px; /* Скругляем углы поля ввода */
+    background-color: transparent;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103),
+        -5px -5px 10px rgba(255, 255, 255, 0.281);
+    /* transition: box-shadow 0.4s ease;   */
+    outline: none;
+}
+
+form button:hover {
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0),
+                5px 5px 10px rgba(255, 255, 255, 0);
+}
+
+/* Стилизация полей ввода */
+form input {
+    width: 90%; /* Ширина поля ввода */
+    padding: 10px; /* Отступы поля ввода */
+    margin-bottom: 1px; /* Отступ между полями */
+    border: none;
+    border-radius: 20px; /* Скругляем углы поля ввода */
+    background-color: transparent;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103),
+        -5px -5px 10px rgba(255, 255, 255, 0.281);
+    transition: box-shadow 0.4s ease;
+    outline: none;
+}
+
+
+form input:hover {
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0),
+                5px 5px 10px rgba(255, 255, 255, 0);
+}
+
+form textarea {
+    padding: 10px; /* Отступы поля ввода */
+    width: 80%;
+    border: none;
+    border-radius: 20px; /* Скругляем углы поля ввода */
+    background-color: transparent;
+    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.486),
+        5px 5px 10px rgba(1, 7, 8, 0.116);
+}
+
+ /* Стили для картинки */
+ .upload-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-image: url('/images/av_ph.PNG');
+    background-size: cover;
+    cursor: pointer;
+    transition: background-image 0.3s ease;
+}
+
+.upload-icon:hover {
+    background-image: url('/images/edit_avatar.PNG');
+}
+
+/* Скрытие элемента input[type="file"] */
+.file-input {
+    display: none;
+}
+
+form h1{
+    text-align: center;
+}
+
+form p{
+    text-align: left; /* Смещаем текст влево */
+    margin: 10px;
+}
+
+.some-type {
+    text-align: center;
+    color: #fff;
+}
+
+.logo {
+    flex: 1;
+    text-align: left;
+    height: 35px;
+}
+
+.logo img{
+    width: 35px; /* Установите нужную ширину для аватарки */
+    height: 35px; /* Установите нужную высоту для аватарки */
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+    border-radius: 10px;
+}
+
+nav {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+}
+
+nav a:hover {
+    color: #ccc;
+}
+
+.content {
+    margin-top: 10px;
+
+    margin: 0 auto; /* Центрируем хедер по горизонтали */
+    width: 90%; /* Фиксированная ширина хедера */
+    max-width: 1000px;
+}
+
+.contentr {
+    margin-top: 10px;
+    margin: 0 auto; /* Центрируем хедер по горизонтали */
+    width: 100%; /* Фиксированная ширина хедера */
+    max-width: 00px; /* Максимальная ширина хедера */
+}
+
+/*прогресс бар */
+.container {
+    /* max-width: 700px; */
+    margin-top: 10px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    background: #ffffff09; 
+}
+
+.container h1{
+    color: #fdaea0;
+}
+
+.containerr {
+    /* max-width: 600px; */
+    margin: 0 auto;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    /* background-image: url('/images/back.PNG'); */
+    /* backdrop-filter: blur(4px); */
+    background: linear-gradient(to top, #08393f, #e2e9eb);
+    background-size: cover; /* чтобы изображение заполняло блок */
+    background-position: center; /* чтобы изображение оставалось по центру блока */
+}
+
+.containerr h2 {
+    color: #000000;
+    /* text-shadow: 0 0 10px #000000; */
+}
+.containerr p {
+    color: #000000;
+    /* text-shadow: 0 0 10px #000000; */
+}
+.containerr a {
+    color: #00ffea;
+}
+
+.containerr a {
+    text-decoration: none;
+}
+
+.main_container {
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 20, 24, 0.801);
+}mainpag
+
+.mainpage_container {
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0.068);
+}
+
+.containerr-p {
+    color:#ffffff;
+}
+
+
+.progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #9eb5b8;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #2F4145;
+    width: 0;
+    transition: width 0.5s ease-in-out;
+}
+
+.buttons {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.button {
+    background-color: rgba(47, 65, 66, 0);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    white-space: nowrap;
+    transition: background-color 0.5s ease;
+}
+
+.button_link {
+    background-color: rgba(47, 65, 66, 0);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    white-space: nowrap;
+    transition: background-color 0.5s ease;
+    width: 30px;
+}
+
+.buttons img{
+    width: 20px; /* Установите нужную ширину для аватарки */
+    height: 20px; /* Установите нужную высоту для аватарки */
+}
+
+.button:hover {
+    background-color: #5d7073;
+}
+
+.button_link:hover {
+    background-color: #5d7073;
+}
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.headerr {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.avatar-and-nick {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-and-nick img {
+    width: 40px; /* Установите нужную ширину для аватарки */
+    height: 40px; /* Установите нужную высоту для аватарки */
+    border-radius: 50%; /* Для круглой аватарки */
+    margin-right: 10px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+}
+
+.avatar img {
+    width: 60px; /* Установите нужную ширину для аватарки */
+    height: 60px; /* Установите нужную высоту для аватарки */
+    border-radius: 50%; /* Для круглой аватарки */
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+
+
+.nick {
+    font-size: 18px; /* Установите нужный размер шрифта для ника */
+}
+
+.small-text {
+    font-size: 14px; /* Установите нужный размер шрифта для маленьких надписей */
+    color: #666; /* Установите нужный цвет для маленьких надписей */
+    float: right; /* Выравнивание элемента справа */
+}
+
+a {
+    color:#cce0e0;
+}
+
+/* Скрытие пароля */
+
+.password-input-container {
+    position: relative;
+}
+
+.password-input-container button {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    width: 30px; /* Ширина кнопки */
+    height: 30px; /* Высота кнопки */
+    font-size: 18px; /* Размер шрифта */
+    line-height: 1; /* Одинарный межстрочный интервал */
+    padding: 0; /* Убираем отступы */
+    border: none; /* Убираем границу */
+    background: none; /* Убираем фон */
+    cursor: pointer; /* Задаем указатель при наведении */
+}
+
+
+/* редактирование описания и фотки профиля */
+.container_editprof {
+    display: flex; /* Используем flexbox для расположения элементов в строку */
+    padding: 10px;
+    max-width: 100%;
+}
+
+.item {
+    display: inline-block; /* Располагает элементы в строку */
+    margin-right: 10px; /* Добавляет небольшой отступ между элементами */
+}
+
+.bio {
+    margin-left:15px;
+}

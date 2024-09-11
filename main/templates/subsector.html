@@ -1,0 +1,32 @@
+{%extends 'header.html'%}
+{%block content%}
+<br><br><br>
+    {%for post in subsector.posts%}
+        <div class="container">
+            <div class="header">
+                <div class="avatar-and-nick">
+                    <!-- Здесь может быть ваша аватарка {{post.}} -->
+                    <img src="/images/testlogo.jpg" alt="Avatar">
+                    <span class="nick">{{post.user}}</span>
+                </div>
+                <span class="small-text">{{post.created_at}}</span>
+            </div>
+            <h1>{{post.title}}</h1>
+            <p>{{post.content}}
+            <br>
+            <a href='/#'>
+<!--            <span class="small-text">Имя автора задания</span></a>-->
+            </p>
+            <br>
+<!--            <div class="progress-bar-container">-->
+<!--                <div class="progress-bar" id="progress"></div>-->
+<!--            </div>-->
+            <div class="buttons">
+                <button class="button">12<img src="/images/like.PNG" alt="Avatar"></button>
+                <button class="button">200<img src="/images/reply.PNG" alt="reply"></button>
+                <button class="button">1721139<img src="/images/bubcoin.PNG" alt="pay"></button>
+                <button class="button">10<img src="/images/share.PNG" alt="share"></button>
+            </div>
+        </div>
+    {%endfor%}
+{%endblock content%}
