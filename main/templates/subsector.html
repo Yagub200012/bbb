@@ -1,8 +1,9 @@
 {%extends 'header.html'%}
 {%block content%}
 <br><br><br>
+<h1>Ветка /{{subsector.sector_title}}/{{subsector.title}}</h1>
     {%for post in subsector.posts%}
-        <div class="container">
+        <div class="container-{{subsector.sector_title}}">
             <div class="header">
                 <div class="avatar-and-nick">
                     <!-- Здесь может быть ваша аватарка {{post.}} -->
@@ -11,7 +12,7 @@
                 </div>
                 <span class="small-text">{{post.created_at}}</span>
             </div>
-            <h1>{{post.title}}</h1>
+            <h2>{{post.title}}</h2>
             <p>{{post.content}}</p>
             <br>
             <div class="buttons">

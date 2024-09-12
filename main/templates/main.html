@@ -3,135 +3,44 @@
 {%block content%}
 <br><br><br>
 <div class="sector-container">
-    {%for sector in sectors%}
+    {%for sector in context.sectors%}
         <div class="sector-block{{sector.id}}">
             <h3>{{sector.title}}</h3>
             {%for subsector in sector.subsectors%}
-            <a href="/subsector_post/?subsector_id={{subsector.id}}&sector_id={{sector.id}}&sector_title={{sector.title}}" class="buttonn"><p>{{subsector.title}}</p></a>
+            <a href="/subsector_post/?subsector_id={{subsector.id}}" class="buttonn"><p>{{subsector.title}}</p></a>
 <!--                <p>{{subsector.title}}</p>-->
             {%endfor%}
         </div>
     {%endfor%}
 </div>
 <div class="mainpage_container">
-    <h2>Бобро пожаловать на нашу страницу!</h2>
-            <p>Мы рады
-                приветствовать вас на нашем сайте. Здесь вы можете найти множество интересной информации.</p>
-            <h3>О нас</h3>
-            <p>Наша компания специализируется на разработке и продаже качественных программных продуктов. Мы стремимся к инновациям и качеству во всем, что делаем.</p>
-            <h3>Наши услуги</h3>
-            <ul>
-                <li>Разработка веб-приложений</li>
-                <li>Мобильное приложение разработки</li>
-                <li>Консультации и обучение по программированию</li>
-                <li>Индивидуальные решения под заказ</li>
-            </ul>
-            <h3>Контакты</h3>
-            <p>Вы можете связаться с нами по следующим контактам:</p>
-            <ul>
-                <li>Телефон: +123456789</li>
-                <li>Email: info@example.com</li>
-                <li>Адрес: ул. Примерная, д. 123, г. Примерный</li>
-            </ul>
-            <h2>Добро пожаловать на нашу страницу!</h2>
-            <p>Мы рады приветствовать вас на нашем сайте. Здесь вы можете найти множество интересной информации.</p>
-            <h3>О нас</h3>
-            <p>Наша компания специализируется на разработке и продаже качественных программных продуктов. Мы стремимся к инновациям и качеству во всем, что делаем.</p>
-            <h3>Наши услуги</h3>
-            <ul>
-                <li>Разработка веб-приложений</li>
-                <li>Мобильное приложение разработки</li>
-                <li>Консультации и обучение по программированию</li>
-                <li>Индивидуальные решения под заказ</li>
-            </ul>
-            <h3>Контакты</h3>
-            <p>Вы можете связаться с нами по следующим контактам:</p>
-            <ul>
-                <li>Телефон: +123456789</li>
-                <li>Email: info@example.com</li>
-                <li>Адрес: ул. Примерная, д. 123, г. Примерный</li>
-            </ul>
-            <h2>Добро пожаловать на нашу страницу!</h2>
-            <p>Мы рады приветствовать вас на нашем сайте. Здесь вы можете найти множество интересной информации.</p>
-            <h3>О нас</h3>
-            <p>Наша компания специализируется на разработке и продаже качественных программных продуктов. Мы стремимся к инновациям и качеству во всем, что делаем.</p>
-            <h3>Наши услуги</h3>
-            <ul>
-                <li>Разработка веб-приложений</li>
-                <li>Мобильное приложение разработки</li>
-                <li>Консультации и обучение по программированию</li>
-                <li>Индивидуальные решения под заказ</li>
-            </ul>
-            <h3>Контакты</h3>
-
-            <!-- <div class="progress-bar-container">
-                <div class="progress-bar" id="progress"></div>
-            </div> -->
-
-
-            <div class="container">
-        <div class="header">
-            <div class="avatar-and-nick">
-                <!-- Здесь может быть ваша аватарка -->
-                <img src="/images/testlogo.jpg" alt="Avatar">
-                <span class="nick">Пользователь исполнитель</span>
+    <br>
+    <h1>Последние публикации всех веток</h1>
+    {%for post in context.posts%}
+        <div class="container-{{post.sector_id}}">
+            <div class="header">
+                <div class="avatar-and-nick">
+                    <!-- Здесь может быть ваша аватарка {{post.}} -->
+                    <img src="/images/testlogo.jpg" alt="Avatar">
+                    <span class="nick">{{post.user}}</span>
+                </div>
+                <span class="small-text">{{post.created_at}}</span>
             </div>
-            <span class="small-text">Цена:1000$</span>
+            <h2>{{post.title}}</h2>
+            <p>{{post.content}}</p>
+            <a href="/subsector_post/?subsector_id={{post.subsector_id}}">
+                <span class="small-text-{{post.sector_id}}">
+                    {{post.sector_id}}/{{post.subsector_title}}/
+                </span>
+            </a>
+            <br>
+            <div class="buttons">
+                <button class="button">12<img src="/images/like.PNG" alt="Avatar"></button>
+                <button class="button">200<img src="/images/reply.PNG" alt="reply"></button>
+                <button class="button">1721139<img src="/images/bubcoin.PNG" alt="pay"></button>
+                <button class="button">10<img src="/images/share.PNG" alt="share"></button>
+            </div>
         </div>
-        <h2>Ice Bucket Challenge</h2>
-        <p>Нужно облить себя холодной водой и снять себя на видео.
-        Ice Bucket Challenge — кампания волонтерского фандрайзинга, направленная на повышение осведомлённости о боковом амиотрофическом склерозе и благотворительное финансирование фондов по исследованию этой болезни.
-        <br>
-        <a href='/#'>
-        <span class="small-text">Имя автора задания</span></a>
-        </p>
-        <br>
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="progress"></div>
-        </div>
-        <div class="buttons">
-            <button class="button">12<img src="/images/like.PNG" alt="Avatar"></button>
-            <button class="button">200<img src="/images/reply.PNG" alt="reply"></button>
-            <button class="button">1721139<img src="/images/bubcoin.PNG" alt="pay"></button>
-            <button class="button">10<img src="/images/share.PNG" alt="share"></button>
-        </div>
-    </div>
+    {%endfor%}
 </div>
-
-
-
-        <p>Вы можете связаться с нами по следующим контактам:</p>
-        <ul>
-            <li>Телефон: +123456789</li>
-            <li>Email: info@example.com</li>
-            <li>Адрес: ул. Примерная, д. 123, г. Примерный</li>
-        </ul>
-        <h2>Добро пожаловать на нашу страницу!</h2>
-        <p>Мы рады приветствовать вас на нашем сайте. Здесь вы можете найти множество интересной информации.</p>
-        <h3>О нас</h3>
-        <p>Наша компания специализируется на разработке и продаже качественных программных продуктов. Мы стремимся к инновациям и качеству во всем, что делаем.</p>
-        <h3>Наши услуги</h3>
-        <ul>
-            <li>Разработка веб-приложений</li>
-            <li>Мобильное приложение разработки</li>
-            <li>Консультации и обучение по программированию</li>
-            <li>Индивидуальные решения под заказ</li>
-        </ul>
-        <h3>Контакты</h3>
-        <p>Вы можете связаться с нами по следующим контактам:</p>
-        <ul>
-            <li>Телефон: +123456789</li>
-            <li>Email: info@example.com</li>
-            <li>Адрес: ул. Примерная, д. 123, г. Примерный</li>
-        </ul>
-        <script>
-        function setProgress(value) {
-        const progress = document.getElementById('progress');
-        progress.style.width = `${value}%`;
-        }
-
-        // Пример использования:
-        const value = 83; // Меняйте это значение в соответствии с вашими требованиями
-        setProgress(value);
-        </script>
 {%endblock content%}

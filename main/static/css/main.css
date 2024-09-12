@@ -323,7 +323,7 @@ nav a:hover {
 }
 
 /*прогресс бар */
-.container {
+.container-Anime {
     /* max-width: 700px; */
     margin-top: 10px;
     padding: 20px;
@@ -332,8 +332,78 @@ nav a:hover {
     background: #ffffff09; 
 }
 
-.container h1{
+.container-Anime h2{
     color: #fdaea0;
+}
+
+/*прогресс бар */
+.container-Gaming {
+    /* max-width: 700px; */
+    margin-top: 10px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    background: #ffffff09; 
+}
+
+.container-Gaming h2{
+    color: #a9bdff;
+}
+
+/*прогресс бар */
+.container-Interests {
+    /* max-width: 700px; */
+    margin-top: 10px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    background: #ffffff09; 
+}
+
+.container-Interests h2{
+    color: #f8ff9b;
+}
+
+/*прогресс бар */
+.container-Politics {
+    /* max-width: 700px; */
+    margin-top: 10px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    background: #ffffff09; 
+}
+
+.container-Politics h2{
+    color: #f8a8ff;
+}
+
+/*прогресс бар */
+.container-Technologies {
+    /* max-width: 700px; */
+    margin-top: 10px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    background: #ffffff09; 
+}
+
+.container-Technologies h2{
+    color: #bdffac;
+}
+
+/*прогресс бар */
+.container-Random {
+    /* max-width: 700px; */
+    margin-top: 10px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    background: #ffffff09; 
+}
+
+.container-Random h2{
+    color: #ffffff;
 }
 
 .containerr {
@@ -497,7 +567,39 @@ nav a:hover {
 
 .small-text {
     font-size: 14px; /* Установите нужный размер шрифта для маленьких надписей */
-    color: #666; /* Установите нужный цвет для маленьких надписей */
+    color: #7a7a7a; /* Установите нужный цвет для маленьких надписей */
+    float: right; /* Выравнивание элемента справа */
+}
+
+.small-text-Random {
+    font-size: 14px; /* Установите нужный размер шрифта для маленьких надписей */
+    color: #ffffff; /* Установите нужный цвет для маленьких надписей */
+    float: right; /* Выравнивание элемента справа */
+}
+
+.small-text-Interests {
+    font-size: 14px; /* Установите нужный размер шрифта для маленьких надписей */
+    color: #f8ff9b; /* Установите нужный цвет для маленьких надписей */
+    float: right; /* Выравнивание элемента справа */
+}
+.small-text-Anime {
+    font-size: 14px; /* Установите нужный размер шрифта для маленьких надписей */
+    color: #fdaea0; /* Установите нужный цвет для маленьких надписей */
+    float: right; /* Выравнивание элемента справа */
+}
+.small-text-Gaming {
+    font-size: 14px; /* Установите нужный размер шрифта для маленьких надписей */
+    color: #a9bdff; /* Установите нужный цвет для маленьких надписей */
+    float: right; /* Выравнивание элемента справа */
+}
+.small-text-Politics {
+    font-size: 14px; /* Установите нужный размер шрифта для маленьких надписей */
+    color: #f8a8ff; /* Установите нужный цвет для маленьких надписей */
+    float: right; /* Выравнивание элемента справа */
+}
+.small-text-Technologies {
+    font-size: 14px; /* Установите нужный размер шрифта для маленьких надписей */
+    color: #bdffac; /* Установите нужный цвет для маленьких надписей */
     float: right; /* Выравнивание элемента справа */
 }
 
