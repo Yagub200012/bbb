@@ -84,5 +84,4 @@ def subsector_post(request):
             'user': post.user.username,
             'user_image': post.user.photo,
         })
-
     return render(request, 'subsector.html', {'subsector': subsector})

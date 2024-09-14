@@ -1,0 +1,30 @@
+{%extends 'header.html'%}
+{%block title%}
+profile
+{%endblock title%}
+{%block content%}
+<br>
+<br>
+<br>
+<br>
+        <div class="containerr">
+            <a href='/edit_profile'>
+                <div class="header">
+                    <div class="avatar">
+                        <img src="/media/{{user.photo}}" alt="Avatar">
+                        <div class='containerr-p'>
+                            <span class="nick"><h2>@{{ user.username}}</h2></span>
+                        </div>
+                    </div>
+                    <div class='containerr-p'>
+                        {{user.id}}
+                    </div>
+                </div>
+            </a>
+            <div class='containerr-p'>
+                <p>{{ user.bio }}</p>
+            </div>
+        </div>
+        <br>
+
+{%endblock content%}

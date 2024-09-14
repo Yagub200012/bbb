@@ -150,8 +150,8 @@ header {
 
 /* форма */
 form {
-    background: linear-gradient(to top, #597e83, #e4eef0);
-    color: #000000;
+    background: #ffffff09;
+    color: #ffffff;
     padding: 20px; /* Увеличиваем отступы для более опрятного внешнего вида */
     border-radius: 10px;
 }
@@ -183,13 +183,11 @@ form button{
     width: 200px;
     height: 35px;
     border: none;
-    background-color: transparent;
+    background-color: rgba(4, 97, 89, 0.589);
     border-radius: 50px;
     font-size: 20px;
     color: #fdfcfc;
     cursor: pointer;
-    box-shadow: -5px -5px 10px rgba(164, 201, 198, 0.404),
-        5px 5px 10px rgba(1, 7, 8, 0.178);
     transition: box-shadow 0.4s ease;
 }
 
@@ -207,28 +205,28 @@ form select{
 }
 
 form button:hover {
-    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0),
-                5px 5px 10px rgba(255, 255, 255, 0);
+    background-color:rgb(3, 117, 108);
+    transition: 0.4s;
 }
 
 /* Стилизация полей ввода */
 form input {
+    color: #fff;
     width: 90%; /* Ширина поля ввода */
     padding: 10px; /* Отступы поля ввода */
     margin-bottom: 1px; /* Отступ между полями */
     border: none;
     border-radius: 20px; /* Скругляем углы поля ввода */
-    background-color: transparent;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103),
-        -5px -5px 10px rgba(255, 255, 255, 0.281);
-    transition: box-shadow 0.4s ease;
+    background-color: #1d1d1d;
+    /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103),
+        -5px -5px 10px rgba(255, 255, 255, 0.281); */
     outline: none;
 }
 
 
 form input:hover {
-    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0),
-                5px 5px 10px rgba(255, 255, 255, 0);
+    background-color: #131313;
+    transition: 0.4s;
 }
 
 form textarea {
@@ -414,21 +412,21 @@ nav a:hover {
     border-radius: 10px;
     /* background-image: url('/images/back.PNG'); */
     /* backdrop-filter: blur(4px); */
-    background: linear-gradient(to top, #08393f, #e2e9eb);
+    background: #ffffff09;
     background-size: cover; /* чтобы изображение заполняло блок */
     background-position: center; /* чтобы изображение оставалось по центру блока */
 }
 
 .containerr h2 {
-    color: #000000;
+    color: #ffffff;
     /* text-shadow: 0 0 10px #000000; */
 }
 .containerr p {
-    color: #000000;
+    color: #636363;
     /* text-shadow: 0 0 10px #000000; */
 }
 .containerr a {
-    color: #00ffea;
+    color: #ffffff;
 }
 
 .containerr a {

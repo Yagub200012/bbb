@@ -16,15 +16,16 @@
         <header>
             <div class="logo">
                 <!-- Здесь может быть ваш логотип -->
-                <a href='/main'>
+                <a href='/'>
                     <img src="{% static 'images/logo.PNG' %}" alt="Логотип">
                 </a>
             </div>
             <!-- <h1>Название приложения</h1> -->
             <nav>
-                <a href="#">Главная</a>
-                <a href="#">О нас</a>
-                <a href="#">Контакты</a>
+                <a href="/auth/login/">login</a>
+                <a href="/auth/logout/">logout</a>
+                <a href="#" >register</a>
+                <a href="/auth/profile/" >profile</a>
             </nav>
         </header>
         <!-- Контент страницы -->
@@ -33,5 +34,6 @@
 
             {% endblock content %}
         </div>
+    <script src="/static/js/access.js"></script>
     </body>
 </html>
