@@ -197,11 +197,19 @@ form select{
     margin-bottom: 1px; /* Отступ между полями */
     border: none;
     border-radius: 20px; /* Скругляем углы поля ввода */
-    background-color: transparent;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103),
-        -5px -5px 10px rgba(255, 255, 255, 0.281);
-    /* transition: box-shadow 0.4s ease;   */
+    background-color: #1d1d1d;
     outline: none;
+    color: white;
+}
+
+form select:hover {
+    background-color: #131313;
+    transition: 0.4s;
+}
+
+option{
+    border-radius: 20px;
+    border: none;
 }
 
 form button:hover {
@@ -234,9 +242,13 @@ form textarea {
     width: 80%;
     border: none;
     border-radius: 20px; /* Скругляем углы поля ввода */
-    background-color: transparent;
-    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.486),
-        5px 5px 10px rgba(1, 7, 8, 0.116);
+    background-color: #1d1d1d;
+    color: white;
+}
+
+form textarea:hover {
+    background-color: #131313;
+    transition: 0.4s;
 }
 
  /* Стили для картинки */

@@ -1,0 +1,46 @@
+{%extends 'header.html'%}
+
+{% block title %}
+    Registration
+{% endblock title %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+    <form method='post' action='/signupapi' class='signupout'>
+        {% csrf_token %}
+        <h1>
+            Регистрация
+        </h1>
+        <p>Username</p>
+        <input type='text' name='username' id='username'><br>
+        <br>
+        <p>Почта</p>
+        <input type='email' name='email' id='email' ><br>
+        <br>
+        <p>Пароль</p>
+<div class="password-input-container">
+    <input type='password' name='password1' id='password1'>
+    <button type="button" class="toggle-password">😑</button>
+</div>
+<br>
+
+<p>Повторите пароль</p>
+<div class="password-input-container">
+    <input type='password' name='password2' id='password2'>
+    <button type="button" class="toggle-password">😑</button>
+</div>
+<br>
+
+        <button type='submit'>
+            Создать аккаунт
+        </button>
+        
+        <p class="some-type"><a href='/auth/login'>У меня есть аккаунт</a></p>
+        <div id="error-message" style="display: none; color: red;"></div>
+    </form>
+    <script src="/static/js/signup.js"></script>
+
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends 'header.html' %}
+
+{% block title %}
+    main
+{% endblock title %}
+
+{%block content%}
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form method='post' action='/maketuskform' class='standart_form' enctype="multipart/form-data" id="PostForm">
+        {%csrf_token%}
+        <h1>
+            Создание задания
+        </h1>
+        <br>
+        <select name="subsector" id="subsector">
+            {% for sector in sectors %}
+                <optgroup label="{{sector.title}}">
+                {% for subsector in sector.subsectors %}
+                    <option value="{{subsector.id}}">{{subsector.title}}</option>
+                {% endfor %}
+                </optgroup>
+            {% endfor %}
+        </select>
+        <br>
+        <p>Заголовок</p>
+        <input type="text" id="title" name="title">
+        <div id="suggestions"></div>
+
+        <!-- <select name="status">
+                <option value="pupa">пупа</option>
+                <option value="zalupa">лупа</option>
+            </select> -->
+        <br>
+        <p>Содержание</p>
+        <textarea id="content" name="content" rows="4" cols="50" value=""></textarea>
+        <br> <br>
+        <!-- <p></p>
+        <div class='container_editprof'>
+            <input type='text' name>
+            <select name="status">
+                <option value="pending">лайки</option>
+                <option value="accepted">бубкоины</option>
+                <option value="rejected">репосты</option>
+                <option value="rejected">комментарии</option>
+            </select>
+        </div>
+        <br> -->
+        <button type='submit'>
+            Создать
+        </button>
+        <br><br>
+        <a href="/profile">Выйти из создания задания</a>
+        <br><br>
+    </form>
+{%endblock content%}

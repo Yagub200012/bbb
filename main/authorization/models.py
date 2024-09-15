@@ -35,6 +35,28 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     # is_banned = models.BooleanField(default=False)
 
+    GD = 'gold'
+    SL = 'silver'
+    BR = 'bronze'
+    RD = 'red'
+    BL = 'blue'
+    PR = 'purple'
+    GR = 'green'
+    WH = 'white'
+
+    MARKS = (
+        (GD, 'gold'),
+        (SL, 'silver'),
+        (BR, 'bronze'),
+        (RD, 'red'),
+        (BL, 'blue'),
+        (PR, 'purple'),
+        (GR, 'green'),
+        (WH, 'white'),
+    )
+
+    mark = models.CharField(max_length=20, choices=MARKS, null=True, blank=True)
+
 
     # Указание уникальных имен для обратных связей
     groups = models.ManyToManyField(Group, related_name='custom_user_set', blank=True)

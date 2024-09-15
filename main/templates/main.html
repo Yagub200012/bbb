@@ -1,4 +1,8 @@
 {%extends 'header.html'%}
+{% load static %}
+{% block title %}
+    main
+{% endblock title %}
 
 {%block content%}
 <br><br><br>
@@ -35,10 +39,9 @@
             </a>
             <br>
             <div class="buttons">
-                <button class="button">12<img src="/images/like.PNG" alt="Avatar"></button>
-                <button class="button">200<img src="/images/reply.PNG" alt="reply"></button>
-                <button class="button">1721139<img src="/images/bubcoin.PNG" alt="pay"></button>
-                <button class="button">10<img src="/images/share.PNG" alt="share"></button>
+                <button class="button">6<img src="{% static 'images/svg/like.svg' %}" alt="like"></button>
+                <button class="button">7<img src="{% static 'images/svg/dis.svg' %}" alt="dislike"></button>
+                <button class="button">131<img src="{% static 'images/svg/comm.svg' %}" alt="comment"></button>
             </div>
         </div>
     {%endfor%}

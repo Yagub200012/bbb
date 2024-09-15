@@ -1,6 +1,10 @@
-from django.shortcuts import render
-from rest_framework.generics import get_object_or_404
-from rest_framework.utils.mediatypes import order_by_precedence
+from django.shortcuts import render, redirect
+from authorization.functions import access
+from django.http import JsonResponse
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
 from .models import *
 from django.views.decorators.http import require_http_methods
@@ -85,3 +89,35 @@ def subsector_post(request):
             'user_image': post.user.photo,
         })
     return render(request, 'subsector.html', {'subsector': subsector})
+
+def post_create(request):
+    access_token = request.COOKIES.get('accessToken', None)
+    if access_token:
+        sectors_data = Sector.objects.prefetch_related('subsectors')
+        sectors = []
+        sec_id = 0
+        for sector in sectors_data:
+            sectors.append({
+                'id': sector.id,
+                'title': sector.title,
+                'subsectors': []
+            })
+            for subsector in sector.subsectors.all():
+                sectors[sec_id]['subsectors'].append({
+                    'id': subsector.id,
+                    'title': subsector.title,
+                    # 'description':subsector.description
+                })
+            sec_id += 1
+        if access(access_token):
+            return render(request, 'post_form.html', {'sectors':sectors})
+        refresh_token = request.COOKIES.get('refreshToken', None)
+        try:
+            refresh = RefreshToken(refresh_token)
+            access_token = str(refresh.access_token)
+            response = HttpResponseRedirect(reverse('profile'))  # Заменить на нужный URL
+            response.set_cookie('accessToken', access_token, httponly=True,secure=True)
+            return response
+        except TokenError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    return redirect('login_rend')

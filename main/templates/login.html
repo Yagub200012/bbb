@@ -1,5 +1,9 @@
 {%extends 'header.html'%}
 
+{% block title %}
+    sign in
+{% endblock title %}
+
 {%block content%}
 <br>
 <br>
@@ -37,7 +41,7 @@
     <br>
     <button type="submit">Next</button>
 
-    <p class="some-type"><a href="/signup">Create account</a></p>
+    <p class="some-type"><a href="/auth/sign_up">Create account</a></p>
 
     <!-- Место для вывода сообщения об ошибке -->
     <div id="error-message" style="color: red; display: none;"></div>
