@@ -44,6 +44,7 @@ def main_page(request):
             'language': post.language,
             'user': post.user.username,
             'user_image': post.user.photo,
+            'mark': post.user.mark,
 
             'subsector_title': post.subsector.title,
             'subsector_id': post.subsector.id,
@@ -85,6 +86,7 @@ def subsector_post(request):
             'likes': post.likes,
             'dislikes': post.dislikes,
             'language': post.language,
+            'mark':post.user.mark,
             'user': post.user.username,
             'user_image': post.user.photo,
         })

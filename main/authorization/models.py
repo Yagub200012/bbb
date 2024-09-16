@@ -35,14 +35,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     # is_banned = models.BooleanField(default=False)
 
-    GD = 'gold'
-    SL = 'silver'
-    BR = 'bronze'
-    RD = 'red'
-    BL = 'blue'
-    PR = 'purple'
-    GR = 'green'
-    WH = 'white'
+    GD = '#dbbb2c'
+    SL = '#7a7a7a'
+    BR = '#db812c'
+    RD = '#eb4444'
+    BL = '#1b7cde'
+    PR = '#bd1bde'
+    GR = '#058585'
 
     MARKS = (
         (GD, 'gold'),
@@ -52,7 +51,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         (BL, 'blue'),
         (PR, 'purple'),
         (GR, 'green'),
-        (WH, 'white'),
     )
 
     mark = models.CharField(max_length=20, choices=MARKS, null=True, blank=True)

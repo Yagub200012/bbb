@@ -5,6 +5,22 @@ body {
     color: rgb(255, 255, 255);
 }
 
+
+.small-icon {
+    /* margin-left: 0.1em;  Небольшой отступ слева от имени */
+    vertical-align: middle;  /* Выравнивание по центру текста */
+    width: 23px;  /* Устанавливаем фиксированную ширину для маленького значка */
+    height: 23px;  /* Устанавливаем фиксированную высоту */
+}
+
+.small-icon-posts {
+    margin-left: 0.1em;  /* Небольшой отступ слева от имени */
+    vertical-align: middle;  /* Выравнивание по центру текста */
+    width: 18px;  /* Устанавливаем фиксированную ширину для маленького значка */
+    height: 18px;  /* Устанавливаем фиксированную высоту */
+}
+
+
 .page-with-background {
     background-image: url('../images/404.PNG');
     background-size: cover;
@@ -463,6 +479,8 @@ nav a:hover {
 
 .containerr-p {
     color:#ffffff;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -534,6 +552,12 @@ nav a:hover {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.checkmark {
+    width: 12px; /* Маленький размер */
+    height: 12px;
+    margin-left: 8px; /* Отступ между ником и галочкой */
 }
 
 .headerr {

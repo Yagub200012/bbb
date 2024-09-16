@@ -12,11 +12,32 @@ profile
     <a href='/edit_profile'>
         <div class="header">
             <div class="avatar">
-                <img src="/media/{{user.photo}}" alt="Avatar">
-                <div class='containerr-p'>
-                    <span class="nick"><h2>{{ user.username}}</h2></span>
-                </div>
-            </div>
+    <img src="/media/{{user.photo}}" alt="Avatar">
+    <div class="containerr-p">
+        <span class="nick">
+            <h2>{{ user.username }}
+                {%if user.mark%}
+                    <svg
+                       xmlns="http://www.w3.org/2000/svg"
+                       width="25"
+                       height="25"
+                       viewBox="0 0 200 200"
+                       class="small-icon">
+                        <circle
+                           cx="100"
+                           cy="100"
+                           r="100"
+                           style="fill:{{ user.mark }};stroke-width:0.45914;fill-opacity:1" />
+                        <path
+                           style="fill:#ffffff;stroke-width:0.593542;fill-opacity:1"
+                           d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z" />
+                    </svg>
+                {%endif%}
+            </h2>
+        </span>
+    </div>
+</div>
+
             <div class='containerr-p'>
                 {{user.id}}
             </div>
@@ -34,8 +55,25 @@ profile
     <div class="header">
         <div class="avatar-and-nick">
             <!-- Здесь может быть ваша аватарка {{post.}} -->
-            <img src="/images/testlogo.jpg" alt="Avatar">
+            <img src="/media/{{user.photo}}" alt="Avatar">
             <span class="nick">{{post.user}}</span>
+            {%if user.mark%}
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="25"
+                           height="25"
+                           viewBox="0 0 200 200"
+                           class="small-icon-posts">
+                            <circle
+                               cx="100"
+                               cy="100"
+                               r="100"
+                               style="fill:{{ user.mark }};stroke-width:0.45914;fill-opacity:1" />
+                            <path
+                               style="fill:#ffffff;stroke-width:0.593542;fill-opacity:1"
+                               d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z" />
+                        </svg>
+                    {%endif%}
         </div>
         <span class="small-text">{{post.created_at}}</span>
     </div>
