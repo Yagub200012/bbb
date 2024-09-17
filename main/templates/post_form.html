@@ -5,9 +5,6 @@
 {% endblock title %}
 
 {%block content%}
-<br>
-    <br>
-    <br>
     <br>
     <br>
     <br>
@@ -18,6 +15,7 @@
             Создание задания
         </h1>
         <br>
+        <p>Ветка</p>
         <select name="subsector" id="subsector">
             {% for sector in sectors %}
                 <optgroup label="{{sector.title}}">
@@ -31,26 +29,61 @@
         <p>Заголовок</p>
         <input type="text" id="title" name="title">
         <div id="suggestions"></div>
-
-        <!-- <select name="status">
-                <option value="pupa">пупа</option>
-                <option value="zalupa">лупа</option>
-            </select> -->
         <br>
         <p>Содержание</p>
         <textarea id="content" name="content" rows="4" cols="50" value=""></textarea>
-        <br> <br>
-        <!-- <p></p>
-        <div class='container_editprof'>
-            <input type='text' name>
-            <select name="status">
-                <option value="pending">лайки</option>
-                <option value="accepted">бубкоины</option>
-                <option value="rejected">репосты</option>
-                <option value="rejected">комментарии</option>
-            </select>
+        <br>
+        <br>
+        <label for="anonymously" class="checkbox-label">
+            <input type="checkbox" id="anonymously" name="anonymously">
+            анонимно (другие пользователи не узнают кто автор поста)
+        </label>
+        <br>
+        <div class="image-upload-wrapper">
+            <div class="image-upload">
+                <input type="file" accept="image/*" class="image-input" id="input1" name="file1">
+                <label for="input1" class="image-label">
+                    <span class="plus-icon">+</span>
+                    <img id="preview1" class="preview-img" alt="">
+                </label>
+            </div>
+            <div class="image-upload">
+                <input type="file" accept="image/*" class="image-input" id="input2" name="file2">
+                <label for="input2" class="image-label">
+                    <span class="plus-icon">+</span>
+                    <img id="preview2" class="preview-img" alt="">
+                </label>
+            </div>
+            <div class="image-upload">
+                <input type="file" accept="image/*" class="image-input" id="input3" name="file3">
+                <label for="input3" class="image-label">
+                    <span class="plus-icon">+</span>
+                    <img id="preview3" class="preview-img" alt="">
+                </label>
+            </div>
+            <div class="image-upload">
+                <input type="file" accept="image/*" class="image-input" id="input4" name="file4">
+                <label for="input4" class="image-label">
+                    <span class="plus-icon">+</span>
+                    <img id="preview4" class="preview-img" alt="">
+                </label>
+            </div>
+            <div class="image-upload">
+                <input type="file" accept="image/*" class="image-input" id="input5" name="file5">
+                <label for="input5" class="image-label">
+                    <span class="plus-icon">+</span>
+                    <img id="preview5" class="preview-img" alt="">
+                </label>
+            </div>
+            <div class="image-upload">
+                <input type="file" accept="image/*" class="image-input" id="input6" name="file6">
+                <label for="input6" class="image-label">
+                    <span class="plus-icon">+</span>
+                    <img id="preview6" class="preview-img" alt="">
+                </label>
+            </div>
         </div>
-        <br> -->
+        <br>
         <button type='submit'>
             Создать
         </button>

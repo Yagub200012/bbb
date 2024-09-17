@@ -36,7 +36,7 @@ document.getElementById('PostForm').addEventListener('submit', async function(ev
 
         if (response.ok) {
             // Если запрос успешный, перенаправляем на главную страницу
-            window.location.href = '';
+            window.location.href = '/';
         } else {
             const errorData = await response.json();
             console.error('Ошибка при отправке данных:', errorData);
@@ -47,6 +47,25 @@ document.getElementById('PostForm').addEventListener('submit', async function(ev
         alert('Произошла ошибка при соединении с сервером');
     }
 });
+
+document.querySelectorAll('.image-input').forEach(input => {
+    input.addEventListener('change', function () {
+        const previewId = 'preview' + this.id.slice(-1);
+        const preview = document.getElementById(previewId);
+
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                preview.previousElementSibling.style.display = 'none'; // скрываем плюсик
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
+
 
 
 

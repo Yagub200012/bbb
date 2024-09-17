@@ -55,6 +55,16 @@
                 </span>
             </a>
             <br>
+            <div class="im-container">
+                {%if post.media%}
+                    {%for file in post.media%}
+                        {%if file%}
+                            <img class="img-post" src="/media/{{file}}">
+                        {%endif%}
+                    {%endfor%}
+                {%endif%}
+            </div>
+            <br>
             <div class="buttons">
                 <button class="button">6<img src="{% static 'images/svg/like.svg' %}" alt="like"></button>
                 <button class="button">7<img src="{% static 'images/svg/dis.svg' %}" alt="dislike"></button>

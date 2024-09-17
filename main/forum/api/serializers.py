@@ -90,6 +90,8 @@ class PostSerializer(serializers.ModelSerializer):
     title = serializers.CharField(required=True)
     content = serializers.CharField(required=True)
     subsector = serializers.PrimaryKeyRelatedField(queryset=SubSector.objects.all(), required=True)
+    anonymously = serializers.BooleanField(required=True)
+
 
     class Meta:
         model = Post
@@ -101,6 +103,13 @@ class PostSerializer(serializers.ModelSerializer):
             'likes',
             'subsector',
             'user',
+            'anonymously',
+            'file1',
+            'file2',
+            'file3',
+            'file4',
+            'file5',
+            'file6',
         ]
         read_only_fields = [
             'id',

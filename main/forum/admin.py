@@ -17,7 +17,7 @@ class SubSectorAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'subsector', 'created_at', 'likes', 'user')
+    list_display = ('title', 'subsector', 'anonymously', 'created_at', 'likes', 'user')
     search_fields = ('title', 'content')
     list_filter = ('user', 'subsector', 'created_at')
 

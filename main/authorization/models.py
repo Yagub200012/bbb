@@ -25,7 +25,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    photo = models.FileField(upload_to='user_photos/', null=True, blank=True)
+    photo = models.FileField(upload_to='user_photos/', default='user_photos/user.PNG')
     username = models.CharField(max_length=40, unique=True)
     emoji = models.CharField(max_length=5, null=True, blank=True)
     bio = models.TextField(max_length=2000, null=True, blank=True)

@@ -25,7 +25,6 @@ def main_page(request):
             sectors[sec_id]['subsectors'].append({
                 'id': subsector.id,
                 'title': subsector.title,
-                # 'description':subsector.description
             })
         sec_id += 1
     posts_data = (Post.objects
@@ -33,6 +32,7 @@ def main_page(request):
                   .order_by('-created_at')
                   .prefetch_related('subsector', 'user'))
     posts = []
+    post_id = 0
     for post in posts_data:
         posts.append({
             'id': post.id,
@@ -42,14 +42,30 @@ def main_page(request):
             'likes': post.likes,
             'dislikes': post.dislikes,
             'language': post.language,
-            'user': post.user.username,
-            'user_image': post.user.photo,
-            'mark': post.user.mark,
+            'media': [
+                post.file1,
+                post.file2,
+                post.file3,
+                post.file4,
+                post.file5,
+                post.file6,
+            ],
 
             'subsector_title': post.subsector.title,
             'subsector_id': post.subsector.id,
             'sector_id': post.subsector.sector,
         })
+        if post.anonymously:
+            posts[post_id]['user'] = 'Anonymous'
+            posts[post_id]['user_image'] = 'user_photos/anon.PNG'
+            posts[post_id]['mark'] = None
+        else:
+            posts[post_id]['user'] = post.user.username
+            posts[post_id]['user_image'] = post.user.photo
+            posts[post_id]['mark'] = post.user.mark
+
+        post_id +=1
+
     context = {
         'sectors': sectors,
         'posts': posts
@@ -77,6 +93,7 @@ def subsector_post(request):
         'sector_title': first_post.subsector.sector,
         'posts': []
     }
+    post_id = 0
     for post in posts:
         subsector['posts'].append({
             'id': post.id,
@@ -86,10 +103,17 @@ def subsector_post(request):
             'likes': post.likes,
             'dislikes': post.dislikes,
             'language': post.language,
-            'mark':post.user.mark,
-            'user': post.user.username,
-            'user_image': post.user.photo,
         })
+        if post.anonymously:
+            subsector['posts'][post_id]['user'] = 'Anonymous'
+            subsector['posts'][post_id]['user_image'] = 'user_photos/anon.PNG'
+            subsector['posts'][post_id]['mark'] = None
+        else:
+            subsector['posts'][post_id]['user'] = post.user.username
+            subsector['posts'][post_id]['user_image'] = post.user.photo
+            subsector['posts'][post_id]['mark'] = post.user.mark
+        post_id +=1
+
     return render(request, 'subsector.html', {'subsector': subsector})
 
 def post_create(request):
@@ -108,7 +132,6 @@ def post_create(request):
                 sectors[sec_id]['subsectors'].append({
                     'id': subsector.id,
                     'title': subsector.title,
-                    # 'description':subsector.description
                 })
             sec_id += 1
         if access(access_token):
@@ -117,7 +140,7 @@ def post_create(request):
         try:
             refresh = RefreshToken(refresh_token)
             access_token = str(refresh.access_token)
-            response = HttpResponseRedirect(reverse('profile'))  # Заменить на нужный URL
+            response = HttpResponseRedirect(reverse('profile'))
             response.set_cookie('accessToken', access_token, httponly=True,secure=True)
             return response
         except TokenError as e:

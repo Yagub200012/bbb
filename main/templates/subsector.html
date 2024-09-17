@@ -1,5 +1,5 @@
 {%extends 'header.html'%}
-
+{%load static%}
 {% block title %}
     {{subsector.title}}
 {% endblock title %}
@@ -13,7 +13,7 @@
             <div class="header">
                 <div class="avatar-and-nick">
                     <!-- Здесь может быть ваша аватарка {{post.}} -->
-                    <img src="/media/{{post.user_image}}" alt="Avatar">
+                        <img src="/media/{{post.user_image}}" alt="Avatar">
                     <span class="nick">{{post.user}}</span>
                     {%if post.mark%}
                         <svg
@@ -28,7 +28,7 @@
                                r="100"
                                style="fill:{{ post.mark }};stroke-width:0.45914;fill-opacity:1" />
                             <path
-                               style="fill:#ffffff;stroke-width:0.593542;fill-opacity:1"
+                               style="fill:#1d1d1d;stroke-width:0.593542;fill-opacity:1"
                                d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z" />
                         </svg>
                     {%endif%}

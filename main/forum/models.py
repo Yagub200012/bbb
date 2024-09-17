@@ -1,6 +1,6 @@
 from django.db import models
 from authorization.models import User
-from django.template.defaulttags import comment
+from .functions import validate_image_or_video
 
 
 class Sector(models.Model):
@@ -35,6 +35,13 @@ class Post(models.Model):
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
 
+    file1 = models.FileField(upload_to='post_media/', null=True, blank=True, validators=[validate_image_or_video])
+    file2 = models.FileField(upload_to='post_media/', null=True, blank=True, validators=[validate_image_or_video])
+    file3 = models.FileField(upload_to='post_media/', null=True, blank=True, validators=[validate_image_or_video])
+    file4 = models.FileField(upload_to='post_media/', null=True, blank=True, validators=[validate_image_or_video])
+    file5 = models.FileField(upload_to='post_media/', null=True, blank=True, validators=[validate_image_or_video])
+    file6 = models.FileField(upload_to='post_media/', null=True, blank=True, validators=[validate_image_or_video])
+
     RU = 'russian'
     EN = 'english'
     AZ = 'azerbaijani'
@@ -49,6 +56,7 @@ class Post(models.Model):
 
     subsector = models.ForeignKey(SubSector, related_name='posts', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null= True, blank=True)
+    anonymously = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = "Post"
