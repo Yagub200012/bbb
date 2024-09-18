@@ -783,3 +783,77 @@ input[type="checkbox"]:checked::after {
     object-fit: cover;
     border-radius: 10px;
 }
+
+/*стили для просмотра фото*/
+
+/* Container для модального окна */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    backdrop-filter: blur(7px);
+    background-color: rgba(0, 0, 0, 0.13); /* затемнение фона */
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Контент модального окна */
+.modal-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.modal-img {
+    width: 500px; /* Устанавливаем фиксированную ширину, можно отрегулировать по твоему желанию */
+    height: auto; /* Автоматическая подстройка высоты для сохранения пропорций */
+    max-height: 80vh; /* Ограничиваем максимальную высоту, чтобы изображение не выходило за пределы экрана */
+    display: block;
+    margin: 0 auto; /* Центрирование изображения внутри модального окна */
+}
+
+
+/* Кнопка закрытия */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Кнопки для навигации между изображениями */
+.prev, .next {
+    border: none;
+    cursor: pointer;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    background-color: #13131300;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}

@@ -21,7 +21,7 @@
     <br>
     <h1>Последние публикации всех веток</h1>
     {%for post in context.posts%}
-        <div class="container-{{post.sector_id}}">
+        <div class="container-{{post.sector_id}}" data-post-id="{{post.id}}">
             <div class="header">
                 <div class="avatar-and-nick">
                     <!-- Здесь может быть ваша аватарка {{post.}} -->
@@ -56,14 +56,27 @@
             </a>
             <br>
             <div class="im-container">
-                {%if post.media%}
-                    {%for file in post.media%}
-                        {%if file%}
-                            <img class="img-post" src="/media/{{file}}">
-                        {%endif%}
-                    {%endfor%}
-                {%endif%}
+                {% if post.media %}
+                    {% for file in post.media %}
+                        {% if file %}
+                            <img class="img-post" src="/media/{{file}}" onclick="openModal({{post.id}}, {{ forloop.counter0 }})">
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             </div>
+
+            <!-- Модальное окно для данного поста -->
+            <!-- Modal window for viewing images -->
+            <div id="imageModal-{{post.id}}" class="modal" onclick="closeOnClickOutside(event, {{post.id}})">
+                <span class="close" onclick="closeModal({{post.id}})">&times;</span>
+                <div class="modal-content">
+                    <button class="prev" onclick="changeSlide(-1, {{post.id}})">&#10094;</button>
+                    <img class="modal-img" id="modalImg-{{post.id}}">
+                    <button class="next" onclick="changeSlide(1, {{post.id}})">&#10095;</button>
+                </div>
+            </div>
+
+
             <br>
             <div class="buttons">
                 <button class="button">6<img src="{% static 'images/svg/like.svg' %}" alt="like"></button>
@@ -73,4 +86,5 @@
         </div>
     {%endfor%}
 </div>
+<script src="/static/js/main.js"></script>
 {%endblock content%}
