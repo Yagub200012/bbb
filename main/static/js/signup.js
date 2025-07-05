@@ -29,25 +29,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value // Берем CSRF токен
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
                 },
                 body: JSON.stringify(formData)
             })
             .then(response => {
                 if (!response.ok) {
-                    console.log('Ответ сервера не ок');
                     return response.json().then(errorData => {
-                        throw new Error(errorData.detail || 'Ошибка регистрации');
+                        // Преобразуем объект ошибок в строку
+                        const errorMessages = Object.entries(errorData)
+                            .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+                            .join('\n');
+                        throw new Error(errorMessages);
                     });
                 }
-                console.log('Получен ответ сервера');
-                return response.json(); // Получаем токены
+                return response.json();
             })
             .then(data => {
                 window.location.href = '/auth/login/';
             })
             .catch(error => {
-                // Показываем сообщение об ошибке пользователю
                 let errorMessageElement = document.getElementById('error-message');
                 errorMessageElement.textContent = error.message;
                 errorMessageElement.style.display = 'block';

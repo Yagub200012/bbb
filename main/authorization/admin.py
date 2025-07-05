@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import User
+from .models import User, Subscription
 
 @admin.register(User)
-class SectorAdmin(admin.ModelAdmin):
+class UserAdmin(admin.ModelAdmin):
     list_display = (
-        'photo',
+        'avatar',
         'username',
         'emoji',
         'bio',
@@ -13,5 +13,13 @@ class SectorAdmin(admin.ModelAdmin):
         'is_staff',
         'created_at',
         'password'
+    )
+
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'subscriber'
     )
 

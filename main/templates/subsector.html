@@ -1,49 +1,9 @@
-{%extends 'header.html'%}
-{%load static%}
+{%extends 'feed.html'%}
+{% load static %}
 {% block title %}
-    {{subsector.title}}
+    subsector
 {% endblock title %}
 
-
-{%block content%}
-<br><br><br>
-<h1>Ветка /{{subsector.sector_title}}/{{subsector.title}}</h1>
-    {%for post in subsector.posts%}
-        <div class="container-{{subsector.sector_title}}">
-            <div class="header">
-                <div class="avatar-and-nick">
-                    <!-- Здесь может быть ваша аватарка {{post.}} -->
-                        <img src="/media/{{post.user_image}}" alt="Avatar">
-                    <span class="nick">{{post.user}}</span>
-                    {%if post.mark%}
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="25"
-                           height="25"
-                           viewBox="0 0 200 200"
-                           class="small-icon-posts">
-                            <circle
-                               cx="100"
-                               cy="100"
-                               r="100"
-                               style="fill:{{ post.mark }};stroke-width:0.45914;fill-opacity:1" />
-                            <path
-                               style="fill:#1d1d1d;stroke-width:0.593542;fill-opacity:1"
-                               d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z" />
-                        </svg>
-                    {%endif%}
-                </div>
-                <span class="small-text">{{post.created_at}}</span>
-            </div>
-            <h2>{{post.title}}</h2>
-            <p>{{post.content}}</p>
-            <br>
-            <div class="buttons">
-                <button class="button">12<img src="/images/like.PNG" alt="Avatar"></button>
-                <button class="button">200<img src="/images/reply.PNG" alt="reply"></button>
-                <button class="button">1721139<img src="/images/bubcoin.PNG" alt="pay"></button>
-                <button class="button">10<img src="/images/share.PNG" alt="share"></button>
-            </div>
-        </div>
-    {%endfor%}
-{%endblock content%}
+{%block sectors%}
+<h1 style="color:#ffffff09" data-subsector-id="{{subsector.id}}" >Ветка /{{subsector.sector_title}}/{{subsector.title}}</h1>
+{%endblock sectors%}

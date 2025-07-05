@@ -12,18 +12,34 @@
     </head>
     <body class="page-with-background">
         <header>
-            <div class="logo">
-                <!-- Здесь может быть ваш логотип -->
-                <a href='/'>
-                    <img src="{% static 'images/logo.PNG' %}" alt="Логотип">
-                </a>
-            </div>
-            <!-- <h1>Название приложения</h1> -->
-            <nav>
-                <a href="#">Главная</a>
-                <a href="#">О нас</a>
-                <a href="#">Контакты</a>
-            </nav>
-        </header>
+    <div class="logo">
+        <!-- Здесь может быть ваш логотип -->
+        <a href='/'>
+            <img src="{% static 'images/log.PNG' %}" alt="Логотип">
+        </a>
+    </div>
+    <nav>
+        <a href='/'>
+            <img src="{% static 'images/log.PNG' %}" class="bottom-logo" alt="Логотип" style="height:36px; object-fit: cover;">
+        </a>
+        <a href="/notifications/">
+            {%if have_notification%}
+            <i class="fa-solid fa-bell fa-shake"></i>
+            {%else%}
+            <i class="fa-solid fa-bell"></i>
+            {%endif%}
+        </a>
+        <a href="/post_create/">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+        <a href="/auth/logout/">
+            <i class="fa-solid fa-door-open"></i>
+        </a>
+<!--        <a href="/auth/profile/{{user_id}}">-->
+            <a href="/auth/login/">
+            <i class="fa-solid fa-circle-user"></i>
+        </a>
+    </nav>
+</header>
     </body>
 </html>

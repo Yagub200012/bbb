@@ -1,90 +1,40 @@
-{%extends 'header.html'%}
+{%extends 'feed.html'%}
 {% load static %}
 {% block title %}
     main
 {% endblock title %}
 
-{%block content%}
-<br><br><br>
-<div class="sector-container">
-    {%for sector in context.sectors%}
-        <div class="sector-block{{sector.id}}">
-            <h3>{{sector.title}}</h3>
-            {%for subsector in sector.subsectors%}
-            <a href="/subsector_post/?subsector_id={{subsector.id}}" class="buttonn"><p>{{subsector.title}}</p></a>
-<!--                <p>{{subsector.title}}</p>-->
-            {%endfor%}
-        </div>
-    {%endfor%}
+{%block sectors%}
+<div class="sticky-container">
+    <div class="sector-container">
+        {%for sector in sectors%}
+            <div class="sector-block" style="color: #{{sector.color}};background-image: url('../../media/{{sector.image}}');">
+                <h3><a href="/sector/{{sector.id}}" class="button-sector"><i class="btn fa-solid fa-{{sector.logo}}"></i><br>{{sector.title}}</a></h3>
+                {%for subsector in sector.subsectors%}
+                <a href="/subsector_post/?subsector_id={{subsector.id}}" class="buttonn"><p class="p-desc">{{subsector.title}}</p></a>
+    <!--                <p>{{subsector.title}}</p>-->
+                {%endfor%}
+            </div>
+        {%endfor%}
+    </div>
 </div>
-<div class="mainpage_container">
-    <br>
-    <h1>Последние публикации всех веток</h1>
-    {%for post in context.posts%}
-        <div class="container-{{post.sector_id}}" data-post-id="{{post.id}}">
-            <div class="header">
-                <div class="avatar-and-nick">
-                    <!-- Здесь может быть ваша аватарка {{post.}} -->
-                    <img src="/media/{{post.user_image}}" alt="Avatar">
-                    <span class="nick">{{post.user}}</span>
-                    {%if post.mark%}
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="25"
-                           height="25"
-                           viewBox="0 0 200 200"
-                           class="small-icon-posts">
-                            <circle
-                               cx="100"
-                               cy="100"
-                               r="100"
-                               style="fill:{{ post.mark }};stroke-width:0.45914;fill-opacity:1" />
-                            <path
-                               style="fill:#ffffff;stroke-width:0.593542;fill-opacity:1"
-                               d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z" />
-                        </svg>
-                    {%endif%}
-                </div>
-                <span class="small-text">{{post.created_at}}</span>
-            </div>
-            <h2>{{post.title}}</h2>
-            <p>{{post.content}}</p>
-            <a href="/subsector_post/?subsector_id={{post.subsector_id}}">
-                <span class="small-text-{{post.sector_id}}">
-                    /{{post.sector_id}}/{{post.subsector_title}}/
-                </span>
-            </a>
-            <br>
-            <div class="im-container">
-                {% if post.media %}
-                    {% for file in post.media %}
-                        {% if file %}
-                            <img class="img-post" src="/media/{{file}}" onclick="openModal({{post.id}}, {{ forloop.counter0 }})">
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            </div>
 
-            <!-- Модальное окно для данного поста -->
-            <!-- Modal window for viewing images -->
-            <div id="imageModal-{{post.id}}" class="modal" onclick="closeOnClickOutside(event, {{post.id}})">
-                <span class="close" onclick="closeModal({{post.id}})">&times;</span>
-                <div class="modal-content">
-                    <button class="prev" onclick="changeSlide(-1, {{post.id}})">&#10094;</button>
-                    <img class="modal-img" id="modalImg-{{post.id}}">
-                    <button class="next" onclick="changeSlide(1, {{post.id}})">&#10095;</button>
-                </div>
-            </div>
-
-
-            <br>
-            <div class="buttons">
-                <button class="button">6<img src="{% static 'images/svg/like.svg' %}" alt="like"></button>
-                <button class="button">7<img src="{% static 'images/svg/dis.svg' %}" alt="dislike"></button>
-                <button class="button">131<img src="{% static 'images/svg/comm.svg' %}" alt="comment"></button>
-            </div>
-        </div>
+<nav id="mobileMenu">
+    {%for sector in sectors%}
+  <i class="btn fa-solid fa-{{sector.logo}}" style="color:#{{sector.color}}" data-topic="{{sector.title}}"></i>
     {%endfor%}
+</nav>
+
+<div id="submenu">
+  {%for sector in sectors%}
+    <div class="topic-submenu" data-topic="{{sector.title}}">
+      <a href="/sector/{{sector.id}}" style="font-size:30px;color:#{{sector.color}}">{{sector.title}}</a>
+      {%for subsector in sector.subsectors%}
+        <a href="/subsector_post/?subsector_id={{subsector.id}}" style="font-size:20px;">{{subsector.title}}</a>
+      {%endfor%}
+    </div>
+  {%endfor%}
 </div>
-<script src="/static/js/main.js"></script>
-{%endblock content%}
+
+<h2>Последние публикации всех веток</h2>
+{%endblock sectors%}

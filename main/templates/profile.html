@@ -4,92 +4,199 @@
 profile
 {%endblock title%}
 {%block content%}
-<br>
-<br>
-<br>
-<br>
-<div class="containerr">
-    <a href='/edit_profile'>
+<div class="containerr" data-user-id="{{user.id}}">
+    {% if is_user %}
+    <a href='/auth/edit_profile/{{user.id}}'>
+        {% endif %}
         <div class="header">
             <div class="avatar">
-    <img src="/media/{{user.photo}}" alt="Avatar">
-    <div class="containerr-p">
+                {% if user.avatar %}
+                    <img src="https://i.imgur.com/{{user.avatar}}" alt="Avatar">
+                {%else%}
+                    <img src="{% static 'images/def_log.jpg' %}" alt="Avatar">
+                {%endif%}
+                <div class="containerr-p">
         <span class="nick">
             <h2>{{ user.username }}
                 {%if user.mark%}
                     <svg
-                       xmlns="http://www.w3.org/2000/svg"
-                       width="25"
-                       height="25"
-                       viewBox="0 0 200 200"
-                       class="small-icon">
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="25"
+                            height="25"
+                            viewBox="0 0 200 200"
+                            class="small-icon">
                         <circle
-                           cx="100"
-                           cy="100"
-                           r="100"
-                           style="fill:{{ user.mark }};stroke-width:0.45914;fill-opacity:1" />
+                                cx="100"
+                                cy="100"
+                                r="100"
+                                style="fill:{{ user.mark }};stroke-width:0.45914;fill-opacity:1"/>
                         <path
-                           style="fill:#ffffff;stroke-width:0.593542;fill-opacity:1"
-                           d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z" />
+                                style="fill:#ffffff;stroke-width:0.593542;fill-opacity:1"
+                                d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z"/>
                     </svg>
                 {%endif%}
             </h2>
         </span>
-    </div>
-</div>
-
-            <div class='containerr-p'>
-                {{user.id}}
+                </div>
             </div>
-        </div>
-    </a>
-    <div class='containerr-p'>
-        <p>{{ user.bio }}</p>
-    </div>
-</div>
 
-<br>
-<h2>Мои публикации</h2>
-{%for post in user.posts%}
-<div class="container-{{post.sector_id}}">
+<!--            <div class='containerr-p'>-->
+<!--                {{posts.0.user.id}}-->
+<!--            </div>-->
+        {% if not is_user %}
+            {% if is_subscribed %}
+            <button class="button" id="toggleBtn" style="font-size:20px"><i class="fa-solid fa-user-minus"></i></button>
+            {% else %}
+            <button class="button" id="toggleBtn" style="font-size:20px"><i class="fa-solid fa-user-plus"></i></button>
+            {%endif%}
+        {% endif %}
+        </div>
+        {% if is_user %}
+    </a>
+    {% endif %}
+    {% if user.bio %}
+        <div class='containerr-p'>
+                <p>{{ user.bio }}</p>
+        </div>
+    {%endif%}
+</div>
+{% if is_user %}
+    <h2>Мои публикации</h2>
+{%else%}
+    <h2>Публикации этого пользователя</h2>
+{%endif%}
+{%for post in posts%}
+<div class="container-{{post.subsector.sector}}" data-post-id="{{post.id}}">
     <div class="header">
         <div class="avatar-and-nick">
             <!-- Здесь может быть ваша аватарка {{post.}} -->
-            <img src="/media/{{user.photo}}" alt="Avatar">
-            <span class="nick">{{post.user}}</span>
-            {%if user.mark%}
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="25"
-                           height="25"
-                           viewBox="0 0 200 200"
-                           class="small-icon-posts">
-                            <circle
-                               cx="100"
-                               cy="100"
-                               r="100"
-                               style="fill:{{ user.mark }};stroke-width:0.45914;fill-opacity:1" />
-                            <path
-                               style="fill:#ffffff;stroke-width:0.593542;fill-opacity:1"
-                               d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z" />
-                        </svg>
-                    {%endif%}
+            <img src="https://i.imgur.com/{{posts.0.user.avatar}}" alt="Avatar">
+            <span class="nick">{{post.user.username}}</span>
+            {%if posts.0.user.mark%}
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    viewBox="0 0 200 200"
+                    class="small-icon-posts">
+                <circle
+                        cx="100"
+                        cy="100"
+                        r="100"
+                        style="fill:{{ posts.0.user.mark }};stroke-width:0.45914;fill-opacity:1"/>
+                <path
+                        style="fill:#ffffff;stroke-width:0.593542;fill-opacity:1"
+                        d="M 21.332094,72.362596 53.252163,144.64266 178.05812,81.98334 171.3519,67.92009 61.334205,123.28926 36.123514,66.606266 Z"/>
+            </svg>
+            {%endif%}
         </div>
-        <span class="small-text">{{post.created_at}}</span>
+        <span class="small-text">{{post.created_at|date:"H:i d.m.Y"}}</span>
     </div>
     <h2>{{post.title}}</h2>
-    <p>{{post.content}}</p>
-    <a href="/subsector_post/?subsector_id={{post.subsector_id}}">
-                <span class="small-text-{{post.sector_id}}">
-                    /{{post.sector_id}}/{{post.subsector_title}}/
-                </span>
+    {% if post.content %}
+        {% if post.content|length > 400 %}
+            <p>{{post.content|linebreaks|slice:":400" }}<span class="small-text"><a href="/post/{{post.id}}">читать далее...</a></span> </p>
+        {% else %}
+            <p>{{ post.content|linebreaks}}</p>
+        {% endif %}
+    {% endif %}
+    <a href="/subsector_post/?subsector_id={{post.subsector.id}}">
+        <span class="small-text-{{post.subsector.sector}}">
+            /{{post.subsector.sector}}/{{post.subsector.title}}/
+        </span>
     </a>
+        <br>
+    <div class="im-container" data-post-id="{{ post.id }}">
+        {% if post.file1 %}
+            <img class="img-post" src="/media/{{ post.file1 }}" onclick="openModal({{ post.id }}, 0)">
+        {% endif %}
+        {% if post.file2 %}
+            <img class="img-post" src="/media/{{ post.file2 }}" onclick="openModal({{ post.id }}, 1)">
+        {% endif %}
+        {% if post.file3 %}
+            <img class="img-post" src="/media/{{ post.file3 }}" onclick="openModal({{ post.id }}, 2)">
+        {% endif %}
+        {% if post.file4 %}
+            <img class="img-post" src="/media/{{ post.file4 }}" onclick="openModal({{ post.id }}, 3)">
+        {% endif %}
+        {% if post.file5 %}
+            <img class="img-post" src="/media/{{ post.file5 }}" onclick="openModal({{ post.id }}, 4)">
+        {% endif %}
+        {% if post.file6 %}
+            <img class="img-post" src="/media/{{ post.file6 }}" onclick="openModal({{ post.id }}, 5)">
+        {% endif %}
+    </div>
+
+
+    <!-- Модальное окно для данного поста -->
+    <!-- Modal window for viewing images -->
+    <div id="imageModal-{{post.id}}" class="modal" onclick="closeOnClickOutside(event, {{post.id}})">
+        <span class="close" onclick="closeModal({{post.id}})">&times;</span>
+        <div class="modal-content">
+            <button class="prev" onclick="changeSlide(-1, {{post.id}})">&#10094;</button>
+            <img class="modal-img" id="modalImg-{{post.id}}" onclick="changeSlide(1, {{post.id}})">
+            <button class="next" onclick="changeSlide(1, {{post.id}})">&#10095;</button>
+        </div>
+    </div>
     <br>
     <div class="buttons">
-        <button class="button">6<img src="{% static 'images/svg/like.svg' %}" alt="like"></button>
-        <button class="button">7<img src="{% static 'images/svg/dis.svg' %}" alt="dislike"></button>
-        <button class="button">131<img src="{% static 'images/svg/comm.svg' %}" alt="comment"></button>
+        {% if post.user_reactions %}
+            {% if post.user_reactions.0.type == 'like' %}
+                <button class="button active" data-type="like" style="background-color: rgb(8, 124, 109);">{{post.likes}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <polygon points="10,5 15,15 5,15" fill="white"/>
+                    </svg>
+                </button>
+                <button class="button">{{post.dislikes}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <polygon points="5,5 15,5 10,15" fill="white"/>
+                    </svg>
+                </button>
+            {% elif post.user_reactions.0.type == 'dislike' %}
+                <button class="button" data-type="like">{{post.likes}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <polygon points="10,5 15,15 5,15" fill="white"/>
+                    </svg>
+                </button>
+                <button class="button active" style="background-color: rgb(8, 124, 109);">{{post.dislikes}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <polygon points="5,5 15,5 10,15" fill="white"/>
+                    </svg>
+                </button>
+            {% else %}
+                <button class="button" data-type="like">{{post.likes}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <polygon points="10,5 15,15 5,15" fill="white"/>
+                    </svg>
+                </button>
+                <button class="button">{{post.dislikes}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <polygon points="5,5 15,5 10,15" fill="white"/>
+                    </svg>
+                </button>
+            {% endif %}
+        {% else %}
+            <button class="button" data-type="like">{{post.likes}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <polygon points="10,5 15,15 5,15" fill="white"/>
+                </svg>
+            </button>
+            <button class="button">{{post.dislikes}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <polygon points="5,5 15,5 10,15" fill="white"/>
+                </svg>
+            </button>
+        {% endif %}
+        <button class="button" id="reply_comment" onclick="window.location.href='/post/{{post.id}}';">
+            {% if post.comments %}
+                {{post.comments}}
+            {% endif%}
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
+                <path d="M1 2h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5l-4 4V3a1 1 0 0 1 1-1z" fill="white"/>
+            </svg>
+        </button>
     </div>
 </div>
 {%endfor%}
+<script src="/static/js/profile.js"></script>
 {%endblock content%}

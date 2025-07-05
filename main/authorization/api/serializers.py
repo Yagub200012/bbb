@@ -1,6 +1,8 @@
 from rest_framework import serializers
-from ..models import User
+from ..models import User, Subscription
 from django.conf import settings
+import requests
+from ..tasks import upload_avatar
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -22,7 +24,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        print('зашел в криет')
         confirm_password = validated_data.pop("confirm_password")
         password = validated_data.get("password")
 
@@ -32,16 +33,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
     def validate_email(self, value):
-        print('валидация почты')
         if User.objects.filter(email=value).exists():
-            print('пароль существует')
-            print(User.objects.filter(email=value))
-            raise serializers.ValidationError("Email already exists.")
-        print('такого пароля нету')
+            raise serializers.ValidationError("Такая почта уже зарегестрирована ")
         return value
 
     def validate_password(self, value):
-        print('валидация пароля')
         if len(value) < getattr(settings, "PASSWORD_MIN_LENGTH", 8):
             raise serializers.ValidationError(
                 "Password should be atleast %s characters long."
@@ -50,13 +46,46 @@ class RegisterSerializer(serializers.ModelSerializer):
         return value
 
     def validate_confirm_password(self, value):
-        print('валидация 2 пароля')
         password = self.initial_data.get("password")
         if password != value:
-            raise serializers.ValidationError("Password incorrect.")
+            raise serializers.ValidationError("Неправильный пароль")
         return value
 
+    def validate_username(self, value):
+        if len(value) > 40:
+            raise serializers.ValidationError("Ник не может превышать 40 символов")
+        if len(value.split()) != 1:
+            raise serializers.ValidationError("В нике не может быть пробелов")
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("Пользователь с таким ником уже существует")
+        return value
+
+
 class UserSerializer(serializers.ModelSerializer):
+    photo = serializers.FileField(write_only=True, required=False)
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'bio']
+        fields = ['id', 'mark','photo', 'username', 'bio', 'avatar']
+
+    def update(self, instance, validated_data):
+        if validated_data.get('photo'):
+            photo = validated_data.pop('photo')
+            upload_avatar.delay(photo.read(), instance.id)
+        return super().update(instance, validated_data)
+
+class SimpleUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id','username']
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Subscription
+        fields = ['user']
+
+    def create(self, validated_data):
+        validated_data['subscriber'] = self.context['request'].user
+        return super().create(validated_data)

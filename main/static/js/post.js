@@ -40,6 +40,37 @@ document.getElementById('PostForm').addEventListener('submit', function(event) {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".buttons .button").forEach(button => {
+        button.addEventListener("click", function () {
+            let isLikeButton = this.innerText.trim() === "";
+            let countSpan = this.firstChild;
+            let currentCount = parseInt(countSpan.textContent);
+
+            if (this.classList.contains("active")) {
+                this.classList.remove("active");
+                this.style.backgroundColor = ""; // Возвращаем стандартный цвет
+                countSpan.textContent = currentCount - 1;
+            } else {
+                // Убираем активный класс у противоположной кнопки
+                let siblingButton = this.parentElement.querySelector(".button.active");
+                if (siblingButton) {
+                    let siblingCountSpan = siblingButton.firstChild;
+                    let siblingCount = parseInt(siblingCountSpan.textContent);
+                    siblingButton.classList.remove("active");
+                    siblingButton.style.backgroundColor = "";
+                    siblingCountSpan.textContent = siblingCount - 1;
+                }
+
+                this.classList.add("active");
+                this.style.backgroundColor = isLikeButton ? "green" : "red";
+                countSpan.textContent = currentCount + 1;
+            }
+        });
+    });
+});
+
+
 
 //function search() {
 //                var input = document.getElementById("searchInput").value;

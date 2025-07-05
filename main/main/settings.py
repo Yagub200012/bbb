@@ -12,9 +12,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -25,7 +28,10 @@ SECRET_KEY = 'django-insecure-!dr07ma_u72edi=&p2!p#(@um52fvmdz-yc074#rsxt2vme!r0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.1.65',
+    '127.0.0.1'
+]
 
 # Application definition
 
@@ -41,7 +47,8 @@ INSTALLED_APPS = [
 
     # apps
     'authorization',
-    'forum'
+    'forum',
+    'notification',
 ]
 
 MIDDLEWARE = [
@@ -139,7 +146,7 @@ AUTH_USER_MODEL = 'authorization.User'
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=5),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=25),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": False,
@@ -196,3 +203,9 @@ TEMPLATES = [
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+IMGUR_CLIENT_ID = os.getenv("IMGUR_CLIENT_ID")
+
+# Celery settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"

@@ -26,12 +26,13 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     })
     .then(data => {
         // Сохраняем токены в куки
-        document.cookie = `accessToken=${data.access}; path=/; secure`;
-        document.cookie = `refreshToken=${data.refresh}; path=/; secure`;
+        document.cookie = `accessToken=${data.access}; path=/;`;
+        document.cookie = `refreshToken=${data.refresh}; path=/;`;
         console.log('Токены сохранены в куки', data);
 
         // Пример: Перенаправление после успешной авторизации
-        window.location.href = '/auth/profile/'; // Редирект на другую страницу
+//        let user_id = document.getElementById('user_id').value;
+        window.location.href = '/auth/profile/0'; // Редирект на другую страницу
     })
     .catch(error => {
         // Показываем сообщение об ошибке пользователю

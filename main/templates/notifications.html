@@ -1,0 +1,44 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block title %}
+notifications
+{% endblock title %}
+
+{%block content%}
+
+<h1> Уведомления </h1>
+<div class="notifs">
+    {% for notification in notifications %}
+    <a href="/post/{{notification.post.id}}" class="button-sector" >
+        {%if notification.checked %}
+            <div class="container-comment">
+        {%else%}
+            <div class="container-comment-new">
+        {%endif%}
+                <div class="header">
+                    <div class="avatar-and-nick">
+                        <span class="nick">
+                        {%if notification.type == 'reply'%}
+                            <i class="fa-solid fa-reply" style="color:orange"></i>
+                        {%elif notification.type == 'comment'%}
+                            <i class="fa-solid fa-comment" style="color:orange"></i>
+                        {%elif notification.type == 'p_like'%}
+                            <i class="fa-solid fa-thumbs-up" style="color:orange"></i>
+                        {%elif notification.type == 'c_like'%}
+                            <i class="fa-solid fa-thumbs-up" style="color:orange"></i>
+                        {%endif%}
+                        &nbsp;{{ notification.description }}</span>
+                    </div>
+                    <span class="small-text">{{notification.event_date|date:"H:i d.m.Y"}}</span>
+                </div>
+            </div>
+    </a>
+    {% endfor %}
+</div>
+<br><br><br><br>
+<div id="loader" style="text-align: center;opacity: 0.7;">
+    <img class='tentacles' src="/static/images/tent.gif" alt="Загрузка..." >
+</div>
+
+<script src="/static/js/notifications.js"></script>
+{%endblock content%}

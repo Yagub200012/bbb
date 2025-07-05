@@ -1,37 +1,38 @@
 {% extends 'header.html' %}
 
 {% block title %}
-    main
+    Create post
 {% endblock title %}
 
 {%block content%}
     <br>
-    <br>
-    <br>
-    <br>
     <form method='post' action='/maketuskform' class='standart_form' enctype="multipart/form-data" id="PostForm">
         {%csrf_token%}
-        <h1>
-            Создание задания
-        </h1>
+<!--        <h1>-->
+<!--            Создание задания-->
+<!--        </h1>-->
         <br>
         <p>Ветка</p>
         <select name="subsector" id="subsector">
             {% for sector in sectors %}
                 <optgroup label="{{sector.title}}">
                 {% for subsector in sector.subsectors %}
+                    {%if subsector.title != "Random"%}
                     <option value="{{subsector.id}}">{{subsector.title}}</option>
+                    {%else%}
+                    <option value="{{subsector.id}}" selected>{{subsector.title}}</option>
+                    {%endif%}
                 {% endfor %}
                 </optgroup>
             {% endfor %}
         </select>
         <br>
         <p>Заголовок</p>
-        <input type="text" id="title" name="title">
+        <input type="text" id="title" name="title" maxlength="100">
         <div id="suggestions"></div>
         <br>
         <p>Содержание</p>
-        <textarea id="content" name="content" rows="4" cols="50" value=""></textarea>
+        <textarea id="content" name="content" rows="4" cols="50" maxlength="5000"></textarea>
         <br>
         <br>
         <label for="anonymously" class="checkbox-label">
@@ -39,6 +40,7 @@
             анонимно (другие пользователи не узнают кто автор поста)
         </label>
         <br>
+        <p style="font-size:20px;color:#ffffff0d;text-align: center;">Изображения могут отобразиться не сразу</p>
         <div class="image-upload-wrapper">
             <div class="image-upload">
                 <input type="file" accept="image/*" class="image-input" id="input1" name="file1">

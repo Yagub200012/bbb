@@ -3,7 +3,7 @@ from email.policy import default
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group, Permission
 from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
-
+from django.db.models import Q
 
 class UserManager(BaseUserManager):
     def create_user(self, username, password, **extra_fields):
@@ -25,7 +25,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    photo = models.FileField(upload_to='user_photos/', default='user_photos/user.PNG')
+    # photo = models.FileField(upload_to='user_photos/', null=True)
+    avatar = models.CharField(max_length=30, null=True, blank=True)
     username = models.CharField(max_length=40, unique=True)
     emoji = models.CharField(max_length=5, null=True, blank=True)
     bio = models.TextField(max_length=2000, null=True, blank=True)
@@ -33,6 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email_verified = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    word_dict = models.JSONField(default=dict, null=False)
     # is_banned = models.BooleanField(default=False)
 
     GD = '#dbbb2c'
@@ -77,3 +79,33 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True
+
+
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='subscriber')
+    subscriber = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='subscribed')
+
+    class Meta:
+        unique_together = ('user', 'subscriber')
+        verbose_name = "Subscription"
+        verbose_name_plural = "Subscriptions"
+        
+
+
+
+
+
+class AuthorUser(models.Model):
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='user')
+    author = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='author')
+
+    class Meta:
+        unique_together = ('user','author')
+        constraints = [
+            models.CheckConstraint(
+                check=~Q(author=models.F("user")),
+                name="user_not_equal_author",
+            )
+        ]

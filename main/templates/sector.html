@@ -1,0 +1,9 @@
+{%extends 'feed.html'%}
+{% load static %}
+{% block title %}
+    sector
+{% endblock title %}
+
+{%block sectors%}
+    <h1 style="color:#ffffff09" data-sector-id="{{sector.id}}">Ветка /{{sector.title}}</h1>
+{%endblock sectors%}

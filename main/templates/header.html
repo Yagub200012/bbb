@@ -1,38 +1,55 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            {% block title %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        {% block title %}
 
-            {% endblock title %}
-        </title>
-        <link href="{% static 'css/main.css' %}" rel="stylesheet" />
-        <link rel="icon" type="image/png" href="{% static 'images/logo.PNG' %}">
-    </head>
-    <body>
-        <header>
-            <div class="logo">
-                <!-- Здесь может быть ваш логотип -->
-                <a href='/'>
-                    <img src="{% static 'images/logo.PNG' %}" alt="Логотип">
-                </a>
-            </div>
-            <!-- <h1>Название приложения</h1> -->
-            <nav>
-                <a href="/auth/logout/">logout</a>
-                <a href="/auth/profile/" >profile</a>
-                <a href="/post_create/">add post</a>
-            </nav>
-        </header>
-        <!-- Контент страницы -->
-        <div class="content">
-            {% block content %}
+        {% endblock title %}
+    </title>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="{% static 'images/logo.PNG' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header class="lens"    >
+    <div class="logo">
+        <!-- Здесь может быть ваш логотип -->
+        <a href='/'>
+            <img src="{% static 'images/log.PNG' %}" alt="Логотип">
+        </a>
+    </div>
+    <nav>
+        <a href='/'>
+            <img src="{% static 'images/log.PNG' %}" class="bottom-logo" alt="Логотип" style="height:36px; object-fit: cover;">
+        </a>
+        <a href="/notifications/">
+            {%if have_notification%}
+            <i class="fa-solid fa-bell fa-shake"></i>
+            {%else%}
+            <i class="fa-solid fa-bell"></i>
+            {%endif%}
+        </a>
+        <a href="/post_create/">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+        <a href="/auth/logout/">
+            <i class="fa-solid fa-door-open"></i>
+        </a>
+<!--        <a href="/auth/profile/{{user_id}}">-->
+            <a href="/auth/login/">
+            <i class="fa-solid fa-circle-user"></i>
+        </a>
+    </nav>
+</header>
+<!-- Контент страницы -->
+<div class="content">
+    {% block content %}
 
-            {% endblock content %}
-        </div>
-    <script src="/static/js/access.js"></script>
-    </body>
+    {% endblock content %}
+</div>
+<script src="/static/js/access.js"></script>
+</body>
 </html>
